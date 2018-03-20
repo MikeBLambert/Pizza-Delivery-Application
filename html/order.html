@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="../js/scripts.js"></script>
+    <title>Pizzarama</title>
+  </head>
+  <body>
+    <div class="container">
+      <span id="welcomeTitle"><h1>Welcome to Pizzarama</h1></span>
+      <form id="pizzaInfoForm">
+        <h3>What size pizza would you like?</h3>
+        <div id="sizeChoice">
+          <div class="radio">
+            <label><input type="radio" id="sizeSmall" name="size" value="small" required>Small</label>
+            <br>
+            <label><input type="radio" id="sizeMedium" name="size" value="medium" required>Medium</label>
+            <br>
+            <label><input type="radio" id="sizeLarge" name="size" value="large" required>Large</label>
+          </div>
+        </div>
+        <h3>What toppings would you like on your pizza?</h3>
+        <div id=toppingChoice>
+          <div class="checkbox">
+            <label><input type="checkbox" id="toppingCheese" name="toppings" value="Cheese">Cheese</label>
+            <br>
+            <label><input type="checkbox" id="toppingPepperoni" name="toppings" value="Pepperoni">Pepperoni</label>
+            <br>
+            <label><input type="checkbox" id="toppingOlives" name="toppings" value="Olives">Olives</label>
+            <br>
+            <label><input type="checkbox" id="toppingPeppers" name="toppings" value="Peppers">Peppers</label>
+          </div>
+          <span id="toppingAlert">Please choose a topping.</span>
+        </div>
+        <button class="btn btn-danger btn-lg" id="addPizza">Add Pizza to Cart</button>
+      </form>
+      <div class="container">
+        <div id="shoppingCart">
+          <h3>Shopping Cart:</h3>
+          <ol><span id = "displayOrderInfo"></span><ol>
+            <button class="btn btn-success btn-lg" id="proceedToCheckout">Proceed to Checkout</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

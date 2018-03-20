@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/styles.css" type="text/css">
+    <script src="../js/jquery-3.3.1.js"></script>
+    <script src="../js/scripts.js"></script>
+    <title>Pizzarama</title>
+  </head>
+  <body>
+    <form id="userInfoForm">
+      <div class="form-group">
+        <h2>Please enter your contact information</h2>
+        <label for="user-first-name">First Name:</label>
+        <input id="user-first-name" type="text" class="form-control" required>
+        <label for="user-last-name">Last Name:</label>
+        <input id="user-last-name" type="text" class="form-control" required>
+        <label for="user-street-address">Street Address:</label>
+        <input id="user-street-address" type="text" class="form-control" required>
+        <label for="user-city">City:</label>
+        <input id="user-city" type="text" class="form-control" required>
+        <label for="user-state">State:</label>
+        <input id="user-state" type="text" class="form-control" required>
+        <label for="user-zip">Zip:</label>
+        <input id="user-zip" type="text" class="form-control" required>
+      </div>
+      <button class="btn btn-danger btn-lg" id="submitOrder">Finalize Order</button>
+    </form>
+    <div class="container">
+      <div id = "finalOrderDisplay">
+        <h1>Thanks for your business!</h1>
+        <h2>Your order will be delivered to:</h2>
+        <br>
+        <div id = "finalOrderInfo"></div>
+      </div>
+    </div>
+  </body>
+</html>
