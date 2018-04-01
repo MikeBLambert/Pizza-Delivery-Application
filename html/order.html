@@ -6,16 +6,16 @@
   </head>
   <body>
     <div class="container">
-      <span id="welcomeTitle"><h1>Welcome to Pizzarama</h1></span>
+      <span id="welcomeTitle"><h1>Welcome to Pizzarama<span id="userNameDisplay"></span></h1></span>
       <form id="pizzaInfoForm">
         <h3>What size pizza would you like?</h3>
         <div id="sizeChoice">
           <div class="radio">
-            <label><input type="radio" id="sizeSmall" name="size" value="small" required>Small</label>
+            <label><input type="radio" id="sizeSmall" name="size" value="Small" required>Small</label>
             <br>
-            <label><input type="radio" id="sizeMedium" name="size" value="medium" required>Medium</label>
+            <label><input type="radio" id="sizeMedium" name="size" value="Medium" required>Medium</label>
             <br>
-            <label><input type="radio" id="sizeLarge" name="size" value="large" required>Large</label>
+            <label><input type="radio" id="sizeLarge" name="size" value="Large" required>Large</label>
           </div>
         </div>
         <h3>What toppings would you like on your pizza?</h3>
@@ -36,8 +36,21 @@
       <div class="container">
         <div id="shoppingCart">
           <h3>Shopping Cart:</h3>
-          <ol><span id = "displayOrderInfo"></span><ol>
-            <button class="btn btn-success btn-lg" id="proceedToCheckout">Proceed to Checkout</button>
+          <ol>
+            <div class="row">
+              <div class="col-md-4">
+                SIZE:
+              </div>
+              <div class="col-md-4">
+                TOPPINGS:
+              </div>
+              <div class="col-md-4">
+                PRICE:
+              </div>
+            </div>
+            <div id="displayPizzaInfo"></div>
+          <ol>
+          <button class="btn btn-success btn-lg" id="proceedToCheckout">Proceed to Checkout</button>
         </div>
       </div>
     </div>

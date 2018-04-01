@@ -1,5 +1,10 @@
 #shoppingCart {
   display: none;
+  width: 50%;
+}
+
+#shoppingCartRows {
+    border-top: 15px;
 }
 
 span#toppingAlert {
@@ -18,10 +23,6 @@ body {
 }
 
 form#userInfoForm {
-  width: 50%;
-}
-
-#shoppingCart {
   width: 50%;
 }
 

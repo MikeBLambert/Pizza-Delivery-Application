@@ -4,38 +4,80 @@ function Pizza (size,toppings) {
   this.toppings = toppings;
   };
 
-  var totalPrice = 0
-  Pizza.prototype.pizzaPrice = function() {
+var totalPrice = 0
+Pizza.prototype.pizzaPrice = function() {
   var pizzaPrice = 0;
-  if (this.size == "small") {
+  if (this.size == "Small") {
     pizzaPrice += 7;
-  } else if (this.size == "medium") {
+  } else if (this.size == "Medium") {
     pizzaPrice += 10;
-  } else if (this.size == "large") {
+  } else if (this.size == "Large") {
     pizzaPrice += 13;
   }
-  for (i=-1; i<this.toppings.length; i+=1) {
+  for (i=0; i<=this.toppings.length; i+=1) {
     if (this.toppings[i] === "Cheese") {
-      pizzaPrice += 1
+      pizzaPrice += 1;
     } else if (this.toppings[i] === "Pepperoni") {
-      pizzaPrice += 2
+      pizzaPrice += 2;
     } else if (this.toppings[i] ==="Olives") {
-      pizzaPrice += 1
+      pizzaPrice += 1;
     } else if (this.toppings[i] === "Peppers") {
-      pizzaPrice += 2
+      pizzaPrice += 2;
     } else if (this.toppings.length === 0) {
-      pizzaPrice += 0
+      pizzaPrice += 0;
     }
-  return pizzaPrice;
-  };
-  };
+  }
+    return pizzaPrice;
+};
+
+pizzasInStorage = JSON.parse(localStorage.getItem('pizzas'));
+if (pizzasInStorage == null) {
+  var pizzas = []
+} else {
+  var pizzas = pizzasInStorage;
+}
+
+pricesInStorage = JSON.parse(localStorage.getItem('prices'));
+if (pricesInStorage == null) {
+  var prices = [];
+} else {
+  var prices = pricesInStorage;
+}
 
 function goToCheckOut() {
   window.location.href = '../html/check-out.html'
 };
 
+
 //User Interface
 $(document).ready(function() {
+  if (pizzasInStorage != null) {
+    $("#shoppingCart").show();
+    for(i=0; i<pizzasInStorage.length; i+=1) {
+      $("#displayPizzaInfo").append(
+        "<div class='row' id='shoppingCartRows'>"+
+          "<div class='col-md-4'>" +
+            "<li>" +
+              pizzasInStorage[i]['size'] +
+            "</li>" +
+          "</div>" +
+          "<div class='col-md-4'>" +
+            pizzasInStorage[i]['toppings'].join("<br>") +
+          "</div>" +
+          "<div class='col-md-4'>" +
+            pricesInStorage[i] +
+          "</div>" +
+        "</div>");
+    };
+  };
+  if (pricesInStorage != null) {
+    for(i=0; i<pricesInStorage.length; i+=1){
+      $("#displayPriceInfo").append(
+        pricesInStorage[i]
+      );
+    };
+  };
+
   $("#pizzaInfoForm").submit(function(event) {
     event.preventDefault();
     var size = $("input:radio[name=size]:checked").val();
@@ -43,37 +85,60 @@ $(document).ready(function() {
     $("input:checkbox[name=toppings]:checked").each(function() {
       toppings.push($(this).val());
     });
-    localStorage.setItem("toppings",toppings);
-
     var pizza = new Pizza(size,toppings);
-    var price = pizza.pizzaPrice();
-    localStorage.setItem("pizza", JSON.stringify(pizza));
+    pizzas.push(pizza);
 
-    if (pizza.toppings.length >= 1) {
-      document.getElementById("pizzaInfoForm").reset();
-      $("#toppingAlert").hide();
-      $("#shoppingCart").show();
-      $("button#submitOrder").show();
-      $("#userInfoForm").show();
-      $("#displayOrderInfo").append(
-        "<div class='row'>" +
-          "<div class='col-md-4'>" +
-            "<li>One " + pizza.size + " pizza. <br>" +
-          "</div>" +
-          "<div class='col-md-4'>" +
-            "TOPPINGS: <ul>" + pizza.toppings.join("<br>") + "</ul>" +
-          "</div>" +
-          "<div class='col-md-4'>" +
-            "Price: $" + price + "</li></h4>" +
-          "</div>" +
-        "</div>");
-      totalPrice += price
-    } else {
-      $("#toppingAlert").show();
-    };
+    var price = pizza.pizzaPrice();
+    prices.push(price);
+    totalPrice += price;
+    localStorage.setItem("pizzas", JSON.stringify(pizzas));
+    localStorage.setItem("prices", JSON.stringify(prices));
+
+
+    $("#shoppingCart").show();
+    $("#displayPizzaInfo").append(
+      "<div class='row'>" +
+        "<div class='col-md-4'>" +
+          "<li>" +
+            pizza.size +
+          "</li>" +
+        "</div>" +
+        "<div class='col-md-4'>" +
+          pizza.toppings.join("<br>") +
+        "</div>" +
+        "<div class='col-md-4'>" +
+          price +
+        "</div>" +
+      "</div>");
+    //   "<li>" + pizza.size
+    // );
+    // $("#displayToppingsInfo").append(
+    //   "<ul>" + pizza.toppings.join("<br>") + "</ul>"+"</li>"
+    // );
   });
+
+  //   if (pizza.toppings.length >= 1) {
+  //     document.getElementById("pizzaInfoForm").reset();
+  //     $("#shoppingCart").show();
+  //     $("button#submitOrder").show();
+  //     $("#userInfoForm").show();
+  //     $("#displayOrderInfo").append(
+  //       "<div class='row'>" +
+  //         "<div class='col-md-4'>" +
+  //           "<li>One " + pizza.size + " pizza. <br>" +
+  //         "</div>" +
+  //         "<div class='col-md-4'>" +
+  //           "TOPPINGS: <ul>" + pizza.toppings.join("<br>") + "</ul>" +
+  //         "</div>" +
+  //         "<div class='col-md-4'>" +
+  //           "Price: $" + price + "</li></h4>" +
+  //         "</div>" +
+  //       "</div>");
+  //     totalPrice += price
+  //   };
+  // });
   $("#proceedToCheckout").click(function(event) {
     event.preventDefault();
     goToCheckOut();
-  })
+  });
 });
