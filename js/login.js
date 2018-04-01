@@ -10,6 +10,6 @@ function goToOrder() {
 userInfo.addEventListener('submit', function(event) {
   event.preventDefault();
   var inputField = document.getElementById('userName');
-  localStorage.setItem('userName',inputField.value);
+  localStorage.setItem('userName',JSON.stringify(inputField.value));
   goToOrder();
 });

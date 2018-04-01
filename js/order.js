@@ -1,3 +1,4 @@
+// 'use strict';
 //Business Logic
 function Pizza (size,toppings) {
   this.size = size;
@@ -30,14 +31,14 @@ Pizza.prototype.pizzaPrice = function() {
     return pizzaPrice;
 };
 
-pizzasInStorage = JSON.parse(localStorage.getItem('pizzas'));
+var pizzasInStorage = JSON.parse(localStorage.getItem('pizzas'));
 if (pizzasInStorage == null) {
   var pizzas = []
 } else {
   var pizzas = pizzasInStorage;
 }
 
-pricesInStorage = JSON.parse(localStorage.getItem('prices'));
+var pricesInStorage = JSON.parse(localStorage.getItem('prices'));
 if (pricesInStorage == null) {
   var prices = [];
 } else {
@@ -51,6 +52,8 @@ function goToCheckOut() {
 
 //User Interface
 $(document).ready(function() {
+  var userNameDisplay = JSON.parse(localStorage.getItem('userName'));
+  $("#userNameDisplay").append(" " + userNameDisplay);
   if (pizzasInStorage != null) {
     $("#shoppingCart").show();
     for(i=0; i<pizzasInStorage.length; i+=1) {
@@ -110,33 +113,9 @@ $(document).ready(function() {
           price +
         "</div>" +
       "</div>");
-    //   "<li>" + pizza.size
-    // );
-    // $("#displayToppingsInfo").append(
-    //   "<ul>" + pizza.toppings.join("<br>") + "</ul>"+"</li>"
-    // );
   });
 
-  //   if (pizza.toppings.length >= 1) {
-  //     document.getElementById("pizzaInfoForm").reset();
-  //     $("#shoppingCart").show();
-  //     $("button#submitOrder").show();
-  //     $("#userInfoForm").show();
-  //     $("#displayOrderInfo").append(
-  //       "<div class='row'>" +
-  //         "<div class='col-md-4'>" +
-  //           "<li>One " + pizza.size + " pizza. <br>" +
-  //         "</div>" +
-  //         "<div class='col-md-4'>" +
-  //           "TOPPINGS: <ul>" + pizza.toppings.join("<br>") + "</ul>" +
-  //         "</div>" +
-  //         "<div class='col-md-4'>" +
-  //           "Price: $" + price + "</li></h4>" +
-  //         "</div>" +
-  //       "</div>");
-  //     totalPrice += price
-  //   };
-  // });
+
   $("#proceedToCheckout").click(function(event) {
     event.preventDefault();
     goToCheckOut();
