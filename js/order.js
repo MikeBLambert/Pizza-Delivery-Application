@@ -1,11 +1,19 @@
-// 'use strict';
 //Business Logic
+var totalPrice = 0
 function Pizza (size,toppings) {
   this.size = size;
   this.toppings = toppings;
   };
 
-var totalPrice = 0
+var pizzasInStorage = JSON.parse(localStorage.getItem('pizzas'));
+if (pizzasInStorage == null) {
+  var pizzas = [];
+} else {
+  var pizzas = pizzasInStorage;
+};
+
+//Calculates pizza prices
+
 Pizza.prototype.pizzaPrice = function() {
   var pizzaPrice = 0;
   if (this.size == "Small") {
@@ -26,17 +34,10 @@ Pizza.prototype.pizzaPrice = function() {
       pizzaPrice += 2;
     } else if (this.toppings.length === 0) {
       pizzaPrice += 0;
-    }
-  }
+    };
+  };
     return pizzaPrice;
 };
-
-var pizzasInStorage = JSON.parse(localStorage.getItem('pizzas'));
-if (pizzasInStorage == null) {
-  var pizzas = []
-} else {
-  var pizzas = pizzasInStorage;
-}
 
 var pricesInStorage = JSON.parse(localStorage.getItem('prices'));
 if (pricesInStorage == null) {
@@ -45,15 +46,15 @@ if (pricesInStorage == null) {
   var prices = pricesInStorage;
 }
 
-function goToCheckOut() {
-  window.location.href = '../html/check-out.html'
-};
-
 
 //User Interface
 $(document).ready(function() {
-  var userNameDisplay = JSON.parse(localStorage.getItem('userName'));
-  $("#userNameDisplay").append(" " + userNameDisplay);
+
+  //To display the user's name after "Welcome to Pizzarama"
+  var userName = JSON.parse(localStorage.getItem('userName'));
+  $("#userNameDisplay").append(" " + userName);
+
+  var pizzasInStorage = JSON.parse(localStorage.getItem('pizzas'));
   if (pizzasInStorage != null) {
     $("#shoppingCart").show();
     for(i=0; i<pizzasInStorage.length; i+=1) {
@@ -73,6 +74,8 @@ $(document).ready(function() {
         "</div>");
     };
   };
+  // var contactInfo = JSON.parse(localStorage.getItem('contactInfo'));
+
   if (pricesInStorage != null) {
     for(i=0; i<pricesInStorage.length; i+=1){
       $("#displayPriceInfo").append(
@@ -96,6 +99,7 @@ $(document).ready(function() {
     totalPrice += price;
     localStorage.setItem("pizzas", JSON.stringify(pizzas));
     localStorage.setItem("prices", JSON.stringify(prices));
+    localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
 
 
     $("#shoppingCart").show();
@@ -118,6 +122,6 @@ $(document).ready(function() {
 
   $("#proceedToCheckout").click(function(event) {
     event.preventDefault();
-    goToCheckOut();
+    window.location.href = '../html/check-out.html'
   });
 });
