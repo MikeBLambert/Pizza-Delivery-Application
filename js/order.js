@@ -12,8 +12,6 @@ if (pizzasInStorage == null) {
   var pizzas = pizzasInStorage;
 };
 
-//Calculates pizza prices
-
 Pizza.prototype.pizzaPrice = function() {
   var pizzaPrice = 0;
   if (this.size == "Small") {
@@ -49,8 +47,6 @@ if (pricesInStorage == null) {
 
 //User Interface
 $(document).ready(function() {
-
-  //To display the user's name after "Welcome to Pizzarama"
   var userName = JSON.parse(localStorage.getItem('userName'));
   $("#userNameDisplay").append(" " + userName);
 
@@ -84,7 +80,7 @@ $(document).ready(function() {
     };
   };
 
-  $("#pizzaInfoForm").submit(function(event) {
+  pizzaInfoForm.addEventListener('submit', function(event) {
     event.preventDefault();
     var size = $("input:radio[name=size]:checked").val();
     var toppings = [];
@@ -120,7 +116,7 @@ $(document).ready(function() {
   });
 
 
-  $("#proceedToCheckout").click(function(event) {
+  proceedToCheckout.addEventListener('click',function(event) {
     event.preventDefault();
     window.location.href = '../html/check-out.html'
   });

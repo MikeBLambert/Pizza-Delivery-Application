@@ -8,12 +8,10 @@ function UserInfo (firstName,lastName,streetAddress,city,state,zip) {
     this.zip = zip;
 };
 
-var totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
-
-
 //User Interface
 $(document).ready(function() {
   var showFinalInfo = function() {
+    var totalPrice = JSON.parse(localStorage.getItem('totalPrice'));
     var contactInfo = JSON.parse(localStorage.getItem('contactInfo'));
     $("#userInfoForm").hide();
     $("#finalOrderDisplay").show();
@@ -34,7 +32,7 @@ $(document).ready(function() {
     showFinalInfo();
   };
 
-  $("#userInfoForm").submit(function(event) {
+  userInfoForm.addEventListener('submit', function(event) {
     event.preventDefault();
     var firstName = $("#user-first-name").val();
     var lastName = $("#user-last-name").val();
@@ -47,7 +45,8 @@ $(document).ready(function() {
     showFinalInfo();
   });
 
-  $("#newOrder").click(function(event) {
+
+  newOrder.addEventListener('click', function(event) {
     event.preventDefault();
     localStorage.clear();
     window.location.href = '../index.html'
