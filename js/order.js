@@ -44,6 +44,18 @@ if (pricesInStorage == null) {
   var prices = pricesInStorage;
 }
 
+// function findSum(sum,number) {
+//   return sum + number;
+// };
+
+// function sumPrices(allPrices) {
+//   return allPrices.reduce(
+//     function(total, number) {
+//       return total + number
+//     };
+//   return sum;
+// };
+
 
 //User Interface
 $(document).ready(function() {
@@ -64,7 +76,7 @@ $(document).ready(function() {
           "<div class='col-md-4'>" +
             pizzasInStorage[i]['toppings'].join("<br>") +
           "</div>" +
-          "<div class='col-md-4'>" +
+          "<div class='col-md-4'>" + "$" +
             pricesInStorage[i] +
           "</div>" +
         "</div>");
@@ -89,14 +101,18 @@ $(document).ready(function() {
     });
     var pizza = new Pizza(size,toppings);
     pizzas.push(pizza);
-
     var price = pizza.pizzaPrice();
     prices.push(price);
-    totalPrice += price;
+    totalPrice = prices.reduce(
+      function(total,number) {
+        return total + number
+      });
+    console.log(totalPrice);
     localStorage.setItem("pizzas", JSON.stringify(pizzas));
     localStorage.setItem("prices", JSON.stringify(prices));
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-
+    // totalPriceTest = sumPrices(prices);
+    // console.log(totalPriceTest);
 
     $("#shoppingCart").show();
     $("#displayPizzaInfo").append(
@@ -109,7 +125,7 @@ $(document).ready(function() {
         "<div class='col-md-4'>" +
           pizza.toppings.join("<br>") +
         "</div>" +
-        "<div class='col-md-4'>" +
+        "<div class='col-md-4'>" + "$" +
           price +
         "</div>" +
       "</div>");

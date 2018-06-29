@@ -4,9 +4,13 @@
 }
 
 #shoppingCartRows {
-    border-top: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
+button#proceedToCheckout {
+  margin-top:15px;
+}
 span#toppingAlert {
   display: none;
   color: yellow;
@@ -24,6 +28,7 @@ body {
 
 form#userInfoForm {
   width: 50%;
+  margin-left: 15px;
 }
 
 #finalOrderInfo {
@@ -32,4 +37,8 @@ form#userInfoForm {
   padding: 4px;
   width: 50%;
   text-align: center;
+}
+
+button#newOrder {
+  margin-top: 15px;
 }
