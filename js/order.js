@@ -1,5 +1,4 @@
 //Business Logic
-var totalPrice = 0
 function Pizza (size,toppings) {
   this.size = size;
   this.toppings = toppings;
@@ -12,6 +11,7 @@ if (pizzasInStorage == null) {
   var pizzas = pizzasInStorage;
 };
 
+// Calculates individual pizza prices based on size and topping choice
 Pizza.prototype.pizzaPrice = function() {
   var pizzaPrice = 0;
   if (this.size == "Small") {
@@ -44,24 +44,11 @@ if (pricesInStorage == null) {
   var prices = pricesInStorage;
 }
 
-// function findSum(sum,number) {
-//   return sum + number;
-// };
-
-// function sumPrices(allPrices) {
-//   return allPrices.reduce(
-//     function(total, number) {
-//       return total + number
-//     };
-//   return sum;
-// };
-
 
 //User Interface
 $(document).ready(function() {
   var userName = JSON.parse(localStorage.getItem('userName'));
   $("#userNameDisplay").append(" " + userName);
-
   var pizzasInStorage = JSON.parse(localStorage.getItem('pizzas'));
   if (pizzasInStorage != null) {
     $("#shoppingCart").show();
@@ -82,7 +69,7 @@ $(document).ready(function() {
         "</div>");
     };
   };
-  // var contactInfo = JSON.parse(localStorage.getItem('contactInfo'));
+  var contactInfo = JSON.parse(localStorage.getItem('contactInfo'));
 
   if (pricesInStorage != null) {
     for(i=0; i<pricesInStorage.length; i+=1){
@@ -107,12 +94,9 @@ $(document).ready(function() {
       function(total,number) {
         return total + number
       });
-    console.log(totalPrice);
     localStorage.setItem("pizzas", JSON.stringify(pizzas));
     localStorage.setItem("prices", JSON.stringify(prices));
     localStorage.setItem("totalPrice", JSON.stringify(totalPrice));
-    // totalPriceTest = sumPrices(prices);
-    // console.log(totalPriceTest);
 
     $("#shoppingCart").show();
     $("#displayPizzaInfo").append(

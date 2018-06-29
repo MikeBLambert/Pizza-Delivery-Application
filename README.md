@@ -1,10 +1,10 @@
-# _{Pizzarama Pizza Delivery}_
+# _Pizzarama Pizza Delivery_
 
-#### _{This is a webpage application built using HTML, CSS, Bootstrap, JavaScript, and jQuery, which was built using the behavior-driven development process. It simulates the customization and ordering of a pizza from a fictional pizzaria}, {February 20, 2018}_
+#### _This is a webpage application built using HTML, CSS, Bootstrap, JavaScript, and jQuery, which was built using the behavior-driven development process. It simulates the customization and ordering of a pizza from a fictional pizzeria, {June 29, 2018}_
 
 ![screenshot](./img/screenshot.png)
 
-#### By _**{Mike B Lambert}**_
+#### By _**Mike B Lambert**_
 
 ## Setup/Installation Requirements
 
@@ -13,14 +13,14 @@
 
 ## Support and contact details
 
-_{mlamb128@gmail.com}_
+_mlamb128@gmail.com_
 
 ## Technologies Used
 
-_{JavaScript, jQuery, HTML, CSS, and Bootstrap.}_
+_JavaScript, jQuery, HTML, CSS, and Bootstrap._
 
 ### License
 
-*{MIT License.}*
+*MIT License.*
 
-Copyright (c) 2018 **_{Mike B Lambert}_**
+Copyright (c) 2018 **_Mike B Lambert_**
